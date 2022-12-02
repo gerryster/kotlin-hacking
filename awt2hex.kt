@@ -1,3 +1,5 @@
 fun main(args : Array<String>) {
-    println("Hello world.")
+    args.iterator().forEach { rawAwtColor ->
+        println("Got $rawAwtColor");
+    }
 }
