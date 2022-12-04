@@ -1,8 +1,30 @@
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+/*
+  Converts a java.awt.Color integer into a hex code.
+
+  Integer colors can be passed in as arguments and/or on standard input.
+*/
+
 fun main(args : Array<String>) {
     args.iterator().forEach { rawAwtColor ->
-        var color = java.awt.Color(Integer.parseInt(rawAwtColor))
-        println("$rawAwtColor -> ${color2hex(color)}")
+        printColorAndHex(rawAwtColor)
     }
+
+    var br = BufferedReader(InputStreamReader(System.`in`))
+    if(br.ready()) {
+        var input = br.readLine()
+        while(input != null) {
+            printColorAndHex(input.trim())
+            input = br.readLine()
+        }
+    }
+}
+
+fun printColorAndHex(rawAwtColor: String) {
+    var color = java.awt.Color(Integer.parseInt(rawAwtColor))
+    println("$rawAwtColor, ${color2hex(color)}")
 }
 
 fun color2hex(color : java.awt.Color) : String {
